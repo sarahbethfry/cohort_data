@@ -13,12 +13,16 @@ def unique_houses(filename):
     ["Dumbledore's Army", 'Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin']
 
     """
-
     houses = set()
 
-    # Code goes here
+    house_data = open(filename)
+    for line in house_data:
+        house = line.split('|') [2]
+        if house != "":
+            houses.add(house)
 
     return houses
+
 
 
 def sort_by_cohort(filename):
@@ -184,7 +188,6 @@ def find_house_members_by_student_name(student_list):
 ##############################################################################
 # END OF MAIN EXERCISE.  Yay!  You did it! You Rock!
 #
-
 
 
 if __name__ == "__main__":
