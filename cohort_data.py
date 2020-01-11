@@ -46,9 +46,36 @@ def sort_by_cohort(filename):
     fall_15 = []
     ghosts = []
 
-    # Code goes here
+    cohort_data = open(filename)
+    
+    for line in cohort_data:
+        names = line.split('|')[0:2]
+        # name = "{} {}".format(names[0], names[1])
+        name = names[0] + " " + names[1]
+        last_item = line.split('|')[-1]
+        if "G" in last_item:
+            ghosts.append(name)
+        elif "Winter 2016" in last_item:
+            winter_16.append(name)
+        elif "Spring 2016" in last_item:
+            spring_16.append(name)
+        elif "Summer 2016" in last_item:
+            summer_16.append(name)
+        elif "Fall 2015" in last_item:
+            fall_15.append(name)
+        
+    all_students.append(fall_15)
+    all_students.append(winter_16)
+    all_students.append(spring_16)
+    all_students.append(summer_16)
+    all_students.append(ghosts)
 
     return all_students
+    
+
+
+   
+print(sort_by_cohort("cohort_data.txt"))
 
 
 def hogwarts_by_house(filename):
@@ -65,19 +92,32 @@ def hogwarts_by_house(filename):
 
     """
 
-    all_hogwarts = []
+    # all_hogwarts = []
     dumbledores_army = []
     gryffindor = []
-    hufflepuff = []
-    ravenclaw = []
-    slytherin = []
-    ghosts = []
-    instructors = []
+    # hufflepuff = []
+    # ravenclaw = []
+    # slytherin = []
+    # ghosts = []
+    # instructors = []
 
-    # Code goes here
+    cohort_data = open(filename)
+    
+    for line in cohort_data:
+        last_name = line.split('|')[1]
+        house = line.split('|')[2]
+        if "Dumbledore's Army" in house:
+            dumbledores_army.append(last_name)
+            dumbledores_army.sort()
+        if "Gryffindor" in house:
+            gryffindor.append(last_name)
+            gryffindor.sort()
+        if "Hufflepuff" in house:
+            
 
-    return all_hogwarts
+    return gryffindor
 
+print(hogwarts_by_house("cohort_data.txt"))
 
 def all_students_tuple_list(filename):
     """TODO: Return a list of tuples of student data.
